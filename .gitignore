@@ -1,162 +1,102 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+'''le sapin de noel'''
 
-# C extensions
-*.so
+for n in range(7):
+    if n== 0:
+        print(("_"*(6))+ ("*") + ("_"*(6)))
+    else:
+        print(("_"*(6-n))+(("*"))+("_"*(n))+(("_"*(n-1))+(("*"))+("_"*(4-n+2))))
+        
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+"""1)  La TVA sur les produits est de 21%
+Demandez à un utilisateur d'encoder le prix d'un article HTVA et afficher le résultat avec la TVA comprise.
+Exemple: 100 € ==> 121€"""
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+HTVA = float(input("quelle est le prix htva ?  "))
+print("le pris TVA comprise est de ", HTVA + (HTVA/100)*21)
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
 
-# Translations
-*.mo
-*.pot
+"""2) Demandez à l'utilisateur d'encoder les 3 longueurs d'un triangle (valeurs entières)
+Si la somme de 2 des côtés est supérieure ou égale au troisième côté, alors il faut afficher "c'est un triangle".  Si pas, vous devez afficher "Ce n'est pas un triangle"
+Exemples:  
+10, 20, 10 => C'est un triangle
+10, 10, 10 => Ce n'est pas un triangle"""
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+list1 = []
+ntlist = []
+cotes = input("entre les trois valeur separe par une , :")
+list1 = cotes.split(", ")
+for i in list1:
+    ntlist.append(int(i))
+if (ntlist[0] <= (ntlist[1] + ntlist[2])) or (ntlist[1] <= (ntlist[0] + ntlist[2])) or (ntlist[2] <= (ntlist[0] + ntlist[1])):
+    print("c'est un triangle")
+else:
+    print("ce n'est pas un triangle")
 
-# Flask stuff:
-instance/
-.webassets-cache
 
-# Scrapy stuff:
-.scrapy
 
-# Sphinx documentation
-docs/_build/
+"""3) On demande à un utilisateur d'encoder une date: jour, mois année (3 valeurs entières)
+- on doit vérifier si l'année est correcte (entre 0 et 2999)
+- on doit vérifier si le mois encodé est correct (1 - 12)
+- on doit vérifier si le jour est correct: 28, 29, 30 ou 31 jours suivant les conditions suivantes:
+* Si le mois a 30 jours (avril, juin, septembre, novembre), le nombre de jours maximum est 30
+* Si le mois a 31 jours (janvier, mars, mai, juillet, août, octobre, décembre), le nombre de jours maximum est 31
+* Si le mois est février et l'année est bissextile, le nombre de jours maximum est 29.
+* Si le mois est février et l'année n'est pas bissextile, le nombre de jours maximum est 28.
+Si la date est correcte, afficher "date correcte".  Si pas, afficher 'date invalide".
+Exemple: 
+01/01/1980 => date correcte
+28/02/2000 => date correcte
+29/02/2023 => date incorrecte"""
 
-# PyBuilder
-.pybuilder/
-target/
 
-# Jupyter Notebook
-.ipynb_checkpoints
+while True:
+    list = []
+    intlist = []
+    listmoispair = [4,6,9,11]
+    try:
+        cotes = input("quelle est la date a verifier ? : ")
+        list = cotes.split("/")
+        for num in list:
+            intlist.append(int(num))
 
-# IPython
-profile_default/
-ipython_config.py
+        #verifie le nbr de jour dans le mois.
+        def test_moipair():
+            listmoispair = [4,6,9,11]
+            for i in listmoispair:
+                if intlist[1] == i and intlist[0] > (30):
+                    return True
+                        
+        def test_impairmoi():
+            listmoisimpaire = [1, 3, 5, 7, 8, 10, 12]
+            for z in listmoisimpaire:
+                if intlist[1] == z and intlist[0] > (31):
+                    return True
+                        
+        def febu_test():
+            if intlist[2]%4 == 0 and intlist[0] <= (29):
+                return True
+            elif intlist[1] == 2 and intlist[0] > (28):
+                return False
 
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
+        if len(intlist) != 3:
+            print("date incorrect")
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+        #verifie si jour/annees/mois mois ne sort pas des faits. 
+        elif (intlist[2] > 2999 or intlist[2] < 0) or (intlist[1] > 12 or intlist[1] < 1) or (intlist[0] <= 0):  
+            print("date incorrect") 
 
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
+        elif test_impairmoi() == True:
+            print("date incorrect")
 
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
-.pdm.toml
-.pdm-python
-.pdm-build/
+        elif test_moipair() == True:
+            print("date incorrect")
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
+        elif febu_test() == False:
+            print("date incorrect")
+        else:
+            print("date correct")
 
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+    except ValueError: 
+        print("une date ce compose de valeur entiere note de la maniere suivante : j/m/a")
+    
