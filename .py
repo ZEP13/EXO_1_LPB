@@ -1,11 +1,14 @@
 '''le sapin de noel'''
-def sapin(num):
+ht = int(input("quelle est la hauteur du sapin ? "))
+def sapin(ht):
+    num = ht+1
     for n in range(num):
         if n== 0:
             print(("_"*(num-1))+ ("*") + ("_"*(num-1)))
         else:
             print(("_"*(num-n-1))+(("*"))+("_"*(n))+(("_"*(n-1))+(("*"))+("_"*(num-n-1))))
-sapin(8)        
+sapin(ht)
+
 
 
 """1)  La TVA sur les produits est de 21%
