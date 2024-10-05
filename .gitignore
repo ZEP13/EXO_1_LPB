@@ -1,11 +1,12 @@
 '''le sapin de noel'''
+def sapin(num):
+    for n in range(num):
+        if n== 0:
+            print(("_"*(num-1))+ ("*") + ("_"*(num-1)))
+        else:
+            print(("_"*(num-n-1))+(("*"))+("_"*(n))+(("_"*(n-1))+(("*"))+("_"*(num-n-1))))
+sapin(8)        
 
-for n in range(7):
-    if n== 0:
-        print(("_"*(6))+ ("*") + ("_"*(6)))
-    else:
-        print(("_"*(6-n))+(("*"))+("_"*(n))+(("_"*(n-1))+(("*"))+("_"*(4-n+2))))
-        
 
 """1)  La TVA sur les produits est de 21%
 Demandez à un utilisateur d'encoder le prix d'un article HTVA et afficher le résultat avec la TVA comprise.
